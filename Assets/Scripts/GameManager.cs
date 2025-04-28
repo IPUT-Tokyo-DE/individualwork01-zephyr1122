@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public GameObject restartButton;
-    public ScoreManager scoreManager;
+    public ScoreManager scoreManager; // スコアマネージャーの参照
 
     private bool isGameOver = false;
 
@@ -19,8 +19,8 @@ public class GameManager : MonoBehaviour
         if (isGameOver) return;
 
         isGameOver = true;
-        Time.timeScale = 0f;  // ゲームオーバー時に時間を止める
-        restartButton.SetActive(true);  // リスタートボタンを表示
+        Time.timeScale = 0f; // ゲームを停止
+        restartButton.SetActive(true); // リスタートボタンを表示
 
         // スコア停止
         if (scoreManager != null)
@@ -31,12 +31,9 @@ public class GameManager : MonoBehaviour
 
     public void Restart()
     {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1f; // ゲーム再開
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // 現在のシーンを再読み込み
     }
 }
-
-
-
 
 

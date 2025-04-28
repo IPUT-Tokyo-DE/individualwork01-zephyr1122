@@ -43,5 +43,3 @@ public class ObstacleSpawner : MonoBehaviour
         spawnInterval = Random.Range(minSpawnInterval, maxSpawnInterval);
     }
 }
-
-

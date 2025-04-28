@@ -1,31 +1,55 @@
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI;  // スコアをUIに表示するために必要
 
 public class ScoreManager : MonoBehaviour
 {
-    public TextMeshProUGUI scoreText;
+    private int score = 0;
+    public Text scoreText;  // スコア表示用のText UIコンポーネント
 
-    private float score = 0f;
-    private bool isCounting = true;
+    private bool isScoreActive = true;  // スコアが加算されているかを管理するフラグ
+
+    void Start()
+    {
+        // スコアの初期化と表示を更新
+        UpdateScoreText();
+    }
 
     void Update()
     {
-        if (isCounting)
+        // もしスコアが有効であれば、時間経過でスコアを増やす処理を追加することも可能
+        if (isScoreActive)
         {
-            score += Time.deltaTime * 100f;
-            scoreText.text = "Score: " + Mathf.FloorToInt(score).ToString();
+            // 例: 時間経過でスコアを増やす
+            IncreaseScore(1);
+            UpdateScoreText();  // スコア表示を更新
+        }
+    }
+
+    public void IncreaseScore(int amount)
+    {
+        if (isScoreActive)  // スコアが有効なときだけ加算
+        {
+            score += amount;
         }
     }
 
     public void StopScore()
     {
-        isCounting = false;
+        isScoreActive = false;  // スコア加算を停止
     }
 
-    public void ResetScore()
+    public void RestartScore()
     {
-        score = 0f;
-        scoreText.text = "Score: 0";
-        isCounting = true;
+        score = 0;  // スコアをリセット
+        isScoreActive = true;  // スコア加算を再開
+    }
+
+    private void UpdateScoreText()
+    {
+        if (scoreText != null)
+        {
+            scoreText.text = "Score: " + score.ToString();
+        }
     }
 }
+

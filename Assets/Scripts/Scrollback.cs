@@ -15,13 +15,10 @@ public class Scrollback : MonoBehaviour
         // ©•ª©g‚Ìx‚ªˆê’è‚æ‚è¶‚És‚Á‚½‚ç
         if (transform.position.x <= resetPositionX)
         {
-            transform.position = new Vector3(
-                partner.transform.position.x + 23f, 0, 0
-            );
+            transform.position = new Vector3(partner.transform.position.x + 23f, 0, 10);
         }
     }
 }
-
 
 
 
